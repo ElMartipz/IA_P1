@@ -58,28 +58,48 @@ public class main {
     }
 
     public static void buscarMatriz(char[][] matriz, String palabra) {
-
+        boolean encontrado=false;
         char busca[][] = new char[3][3]; // Definimos una matriz que busca
-        // Direcciones en el orden: arriba, abajo, izquierda, derecha, 
-        // arriba-izquierda, arriba-derecha, abajo-izquierda, abajo-derecha
-        int[][] direcciones = {
-            {-1, 0},  // arriba
-            {1, 0},   // abajo
-            {0, -1},  // izquierda
-            {0, 1},   // derecha
-            {-1, -1}, // arriba-izquierda
-            {-1, 1},  // arriba-derecha
-            {1, -1},  // abajo-izquierda
-            {1, 1}    // abajo-derecha
-        };
-
-         
+        //direcciones
+        int [] dx= {-1,-1,-1,0,0,1,1,1};
+        int [] dy= {-1,0,1,-1,1,-1,0,1};
+        
+         char [] palabraChar= palabra.toCharArray();
         //recorre toda la matriz
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
 
-               // matriz[i][j] =  // Asignamos el valor y luego incrementamos
+               if(palabraChar[0]==matriz[i][j]){
+                System.out.println("detecte la letra en"+i+" "+j);
+                for(int dir=0; dir<8 && encontrado==false; dir++){
+                    //auxiliares
+                    int x=i;
+                    int y=j;
+                    for(int c=0; c<palabra.length();c++){
+                        if(palabraChar[c]!=matriz[x][y]){
+                            break;
+                        }else{
+                            x+=dx[dir];
+                            y+=dy[dir];
+                        }
+                        if(c==palabra.length()-1){
+                            encontrado=true;
+                            break;
+                        }
+                    }
+
+                }
+               }
+               if(encontrado){
+                System.out.println("palabra encontrada en: "+i+" "+j);
+                break;
+                }
+            }
+            if(encontrado){
+                
+                break;
             }
         }
+        
     }
 }
