@@ -50,9 +50,36 @@ public class main {
                 panel.add(matrizTextFields[i][j]);
             }
         }
+        buscarMatriz(matriz, "HOLA");
 
         // Añadir panel a la ventana y hacer visible
         ventana.add(panel);
         ventana.setVisible(true);
+    }
+
+    public static void buscarMatriz(char[][] matriz, String palabra) {
+
+        char busca[][] = new char[3][3]; // Definimos una matriz que busca
+        // Direcciones en el orden: arriba, abajo, izquierda, derecha, 
+        // arriba-izquierda, arriba-derecha, abajo-izquierda, abajo-derecha
+        int[][] direcciones = {
+            {-1, 0},  // arriba
+            {1, 0},   // abajo
+            {0, -1},  // izquierda
+            {0, 1},   // derecha
+            {-1, -1}, // arriba-izquierda
+            {-1, 1},  // arriba-derecha
+            {1, -1},  // abajo-izquierda
+            {1, 1}    // abajo-derecha
+        };
+
+         
+        //recorre toda la matriz
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+
+               // matriz[i][j] =  // Asignamos el valor y luego incrementamos
+            }
+        }
     }
 }
