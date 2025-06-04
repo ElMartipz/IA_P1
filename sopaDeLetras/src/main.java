@@ -28,12 +28,13 @@ public class main {
             {'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
             {'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
             {'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-            {'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
+            {'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'E', 'L', 'I', 'X', 'X', 'X', 'X', 'X'}
         };
     
         ArrayList<String> palabras = new ArrayList<>();
         palabras.add("HOLA"); 
         palabras.add("MUNDO");
+        palabras.add("ELI");
 
         JFrame ventana = new JFrame("Matriz 20x20 de JTextField");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
