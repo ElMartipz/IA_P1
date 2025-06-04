@@ -31,8 +31,8 @@ public class main {
         };
     
         ArrayList<String> palabras = new ArrayList<>();
-        palabras.add("HOLA");
-        palabras.add(",MUNDO");
+        palabras.add("HOLA"); 
+        palabras.add("MUNDO");
 
         JFrame ventana = new JFrame("Matriz 20x20 de JTextField");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,46 +64,50 @@ public class main {
         ventana.setVisible(true);
     }  
 
-    public static void buscarMatriz(char[][] matriz, String palabras) {
+    public static void buscarMatriz(char[][] matriz, ArrayList lista_palabras) {
         boolean encontrado=false;
+
+        String[] palabraChar = new String[lista_palabras.size()];
 
         //direcciones
         int [] dx= {0,-1,-1,-1,0,1,1,1};
         int [] dy= {-1,-1,0,1,1,1,0,-1};
         
-        char [] palabraChar= palabras.toCharArray();
-        //recorre toda la matriz
-        for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz[i].length; j++) {
+        for (int n=0; n<lista_palabras.size(); n++){
+            palabraChar[n]= lista_palabras.get(n);
+        }
+        //for (String palabra : palabras){
+            //recorre toda la matriz
+            for (int i = 0; i < matriz.length; i++) {
+                for (int j = 0; j < matriz[i].length; j++) {
+                if(palabraChar[0]==matriz[i][j]){
+                    System.out.println("detecte la palabra en "+i+" y "+j);
+                    for(int dir=0; dir<8 && encontrado==false; dir++){
+                        //auxiliares
+                        int x=i;
+                        int y=j;
+                        for(int c=0; c<palabras.size(); c++){
+                            if(palabraChar[c]!=matriz[x][y]){
+                                break;
+                            }else{
+                                x+=dx[dir];
+                                y+=dy[dir];
+                            }
+                            if(c==palabras.size()-1){
+                                encontrado=true;
+                                break;
+                            }
+                        }
 
-            if(palabraChar[0]==matriz[i][j]){
-                System.out.println("detecte la palabra en "+i+" y "+j);
-                for(int dir=0; dir<8 && encontrado==false; dir++){
-                    //auxiliares
-                    int x=i;
-                    int y=j;
-                    for(int c=0; c<palabras.length();c++){
-                        if(palabraChar[c]!=matriz[x][y]){
-                            break;
-                        }else{
-                            x+=dx[dir];
-                            y+=dy[dir];
-                        }
-                        if(c==palabras.length()-1){
-                            encontrado=true;
-                            break;
-                        }
                     }
+                }
 
+                if(encontrado){
+                    System.out.println("palabra encontrada en: "+i+" "+j);
+                    break;
                 }
             }
-
-            if(encontrado){
-                System.out.println("palabra encontrada en: "+i+" "+j);
-                break;
-            }
-
-        }
+       // }
         if(encontrado){
                 
             break;
