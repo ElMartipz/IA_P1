@@ -1,10 +1,10 @@
 import java.awt.GridLayout;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 import java.awt.TextArea;
 import java.util.ArrayList;
 import java.util.Arrays;
-=======
->>>>>>> generadorDeSopa
+//=======
+//>>>>>>> generadorDeSopa
 import java.util.Random;
 import javax.swing.*;
 import java.io.File;
@@ -13,7 +13,7 @@ import java.io.FileNotFoundException;
 
 
 public class main {
-<<<<<<< HEAD
+//<<<<<<< HEAD
     public static void main(String[] args) {
         // Configurar la ventana principal
         char[][] matriz = {
@@ -43,8 +43,8 @@ public class main {
         palabras.add("HOLA"); 
         palabras.add("MUNDO");
         palabras.add("ELI");
-=======
->>>>>>> generadorDeSopa
+//=======
+//>>>>>>> generadorDeSopa
 
     public static int contarPalabras(File fichero) {
         int contador = 0;
@@ -56,7 +56,7 @@ public class main {
         } catch (FileNotFoundException e) {
             System.err.println("El archivo no se encontró: " + e.getMessage());
         }
-<<<<<<< HEAD
+//<<<<<<< HEAD
         // Añadir panel a la ventana y hacer visible
         ventana.add(panel);
         ventana.setVisible(true);
@@ -81,7 +81,7 @@ public class main {
             }
         }
         
-    }  
+      
 
     public static boolean buscarMatriz(char[][] matriz, String palabra) {
 
@@ -119,8 +119,8 @@ public class main {
             }
         }
         return false;
-=======
-        return contador;
+//=======
+//        return contador;
     }
 
     public static String invertirPalabra(String palabra) {
@@ -199,7 +199,7 @@ public class main {
             }
         }
         return true;
->>>>>>> generadorDeSopa
+//>>>>>>> generadorDeSopa
     }
 
     private static void colocarEnPosicion(JTextField[][] matriz, int fila, int columna,
@@ -301,5 +301,6 @@ public class main {
         // Crear y mostrar ventana
         JFrame ventana = crearVentana(matriz, filas, columnas);
         ventana.setVisible(true);
+    }
     }
 }
