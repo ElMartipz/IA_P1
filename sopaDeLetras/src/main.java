@@ -78,7 +78,7 @@ public class main {
         
         //recorre toda la matriz
 
-        for (int i = 0; i < palabra.length(); i++) {
+        for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < col; j++) {
 
                 for(int dir=0; dir<8 && encontrado==false; dir++){
