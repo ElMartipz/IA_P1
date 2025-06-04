@@ -83,30 +83,25 @@ public class main {
 
                 for(int dir=0; dir<8 && encontrado==false; dir++){
                     //auxiliares
-                    int x=i;
-                    int y=j;
+                    int x=i, y=j;
+                    int c;
                     
-                    for(int c=0; c<matriz.length; c++){
-                        if (x<0 || x >= palabra.length() || y <0 || y>= col)
+                    for( c=0; c<palabra.length(); c++){
+                        if (x<0 || x >= matriz.length || y <0 || y>= col)
                             break;
                         if(matriz[x][y] != palabra.charAt(c))
                             break;
 
                         x+=dx[dir];
                         y+=dy[dir];
-
-                    if(c==palabra.length()-1){
-                        encontrado=true;
-                        break;
                     }
-                    }
+                        if(c==palabra.length()){
+                            encontrado=true;
+                            System.out.println("palabra encontrada en: "+i+" y "+ j);
+                            break;
+                        }
                 }
-                if(encontrado){
-                    System.out.println("palabra encontrada en: "+i+" y "+ j);
-                    break;
-                }
-
-            if (encontrado) break;
+                if (encontrado) break;
             }
 
             if (encontrado) break;
