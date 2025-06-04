@@ -62,14 +62,17 @@ public class main {
         ventana.setVisible(true);
 
         for (String palabra: palabras){
-            buscarMatriz(matriz, palabra);
+            if(buscarMatriz(matriz, palabra)){
+                System.out.println("Palabra encontrada");
+            }else{
+                System.out.println("Palabra no encontrada");  
+            }
         }
         
     }  
 
-    public static void buscarMatriz(char[][] matriz, String palabra) {
+    public static boolean buscarMatriz(char[][] matriz, String palabra) {
 
-        boolean encontrado=false;
         int col = matriz[0].length;
 
         //direcciones
@@ -81,7 +84,7 @@ public class main {
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < col; j++) {
 
-                for(int dir=0; dir<8 && encontrado==false; dir++){
+                for(int dir=0; dir<8; dir++){
                     //auxiliares
                     int x=i, y=j;
                     int c;
@@ -95,20 +98,14 @@ public class main {
                         x+=dx[dir];
                         y+=dy[dir];
                     }
-                        if(c==palabra.length()){
-                            encontrado=true;
-                            System.out.println("palabra encontrada en: "+i+" y "+ j);
-                            break;
-                        }
+                    //Si se encontró la palabra
+                    if(c==palabra.length()){
+                        System.out.println("palabra encontrada en: "+i+" y "+ j);
+                        return true;
+                    }
                 }
-                if (encontrado) break;
             }
-
-            if (encontrado) break;
         }
-
-        if (!encontrado) {
-            System.out.println("Palabra no encontrada.");
-        }
+        return false;
     }
 }
