@@ -1,4 +1,5 @@
 import java.awt.GridLayout;
+import java.awt.TextArea;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -61,9 +62,21 @@ public class main {
         ventana.add(panel);
         ventana.setVisible(true);
 
+        //Añadir pantallita de aviso
+        JFrame aviso = new JFrame("Ventana de aviso.");
+        aviso.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        aviso.setSize(300, 200);
+        //aviso.setLocationRelativeTo(null);
+
+        JPanel pan = new JPanel();
+        //JLabel t = new JLabel("Se ha encontrado una palabra");
+        //pan.add(t);
+
         for (String palabra: palabras){
             if(buscarMatriz(matriz, palabra)){
                 System.out.println("Palabra encontrada");
+                aviso.add(pan);
+                aviso.setVisible(true);
             }else{
                 System.out.println("Palabra no encontrada");  
             }
