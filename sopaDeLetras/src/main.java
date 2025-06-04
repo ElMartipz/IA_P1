@@ -57,62 +57,61 @@ public class main {
                 panel.add(matrizTextFields[i][j]);
             }
         }
-        buscarMatriz(matriz, palabras);
-
         // Añadir panel a la ventana y hacer visible
         ventana.add(panel);
         ventana.setVisible(true);
+
+        for (String palabra: palabras){
+            buscarMatriz(matriz, palabra);
+        }
+        
     }  
 
-    public static void buscarMatriz(char[][] matriz, ArrayList lista_palabras) {
-        boolean encontrado=false;
+    public static void buscarMatriz(char[][] matriz, String palabra) {
 
-        String[] palabraChar = new String[lista_palabras.size()];
+        boolean encontrado=false;
 
         //direcciones
         int [] dx= {0,-1,-1,-1,0,1,1,1};
         int [] dy= {-1,-1,0,1,1,1,0,-1};
         
-        for (int n=0; n<lista_palabras.size(); n++){
-            palabraChar[n]= lista_palabras.get(n);
-        }
-        //for (String palabra : palabras){
-            //recorre toda la matriz
-            for (int i = 0; i < matriz.length; i++) {
-                for (int j = 0; j < matriz[i].length; j++) {
-                if(palabraChar[0]==matriz[i][j]){
-                    System.out.println("detecte la palabra en "+i+" y "+j);
-                    for(int dir=0; dir<8 && encontrado==false; dir++){
-                        //auxiliares
-                        int x=i;
-                        int y=j;
-                        for(int c=0; c<palabras.size(); c++){
-                            if(palabraChar[c]!=matriz[x][y]){
-                                break;
-                            }else{
-                                x+=dx[dir];
-                                y+=dy[dir];
-                            }
-                            if(c==palabras.size()-1){
-                                encontrado=true;
-                                break;
-                            }
+        //recorre toda la matriz
+
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+
+                for(int dir=0; dir<8 && encontrado==false; dir++){
+                    //auxiliares
+                    int x=i;
+                    int y=j;
+                    int col = matriz[0].length;
+
+                    for(int c=0; c<palabra.length(); c++){
+                        if (x<0 || x >= palabra.length() || y <0 || y>= col){
+                            break;
+                        }
+                        if(palabra.charAt(c)!=matriz[x][y]){
+                            break;
                         }
 
+                        x+=dx[dir];
+                        y+=dy[dir];
+
+                    if(c==palabra.length()-1){
+                        encontrado=true;
+                        break;
+                    }
                     }
                 }
-
                 if(encontrado){
-                    System.out.println("palabra encontrada en: "+i+" "+j);
+                    System.out.println("palabra encontrada en: "+i+" y "+ j);
                     break;
                 }
             }
-       // }
-        if(encontrado){
-                
+            
+        }
+        /*if(encontrado){
             break;
-        }
-        }
-        
+        }*/
     }
 }
