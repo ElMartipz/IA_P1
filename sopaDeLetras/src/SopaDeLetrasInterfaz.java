@@ -142,8 +142,8 @@ public class SopaDeLetrasInterfaz extends JFrame {
         });
     }
 
-    // Buscar palabra en matriz de chars
-    public static boolean buscarMatriz(char[][] matriz, String palabra, JTextField[][] matrix) {
+    public static boolean buscarMatriz(char[][] matriz, String palabra, JTextField[][] matrix, JTextField campoDeTiempo) {
+        long startTime = System.nanoTime();
         int col = matriz[0].length;
         int[] dx = {0, -1, -1, -1, 0, 1, 1, 1};
         int[] dy = {-1, -1, 0, 1, 1, 1, 0, -1};
@@ -162,13 +162,20 @@ public class SopaDeLetrasInterfaz extends JFrame {
                         y += dy[dir];
                     }
                     if (c == palabra.length()) {
-                        colorear(dir, matrix,i,j,palabra);
-                        System.out.println("Palabra encontrada en: " + i + ", " + j);
+                        colorear(dir, matrix, i, j, palabra);
+                        long endTime = System.nanoTime();
+                        long tiempo = (endTime - startTime) / 1000000; // microsegundos
+                        campoDeTiempo.setText(String.valueOf(tiempo));
                         return true;
                     }
                 }
             }
         }
+        
+        // Si no se encontró la palabra
+        long endTime = System.nanoTime();
+        long tiempo = (endTime - startTime) / 1000000;
+        campoDeTiempo.setText(String.valueOf(tiempo));
         return false;
     }
 
@@ -334,11 +341,12 @@ public class SopaDeLetrasInterfaz extends JFrame {
         String[] palabras = cargarPalabras(fichero);
 
         char[][] matrizChar = extraerMatrizCaracteres(matriz);
-        for (String palabra : palabras) {
-            boolean encontrada = buscarMatriz(matrizChar, palabra, matriz);
-            System.out.println(palabra + ": " + (encontrada ? "ENCONTRADA" : "NO ENCONTRADA"));
+        for (int i = 0; i < palabras.length; i++) {
+        boolean encontrada = buscarMatriz(matrizChar, palabras[i], matriz, camposTiempos.get(i));
+            System.out.println(palabras[i] + ": " + (encontrada ? "ENCONTRADA" : "NO ENCONTRADA"));
+            JOptionPane.showMessageDialog(this, "Se encontro palabra");
         }
-        JOptionPane.showMessageDialog(this, "Función para resolver");
+        
     }
 
     private void generarNuevaSopa() {
