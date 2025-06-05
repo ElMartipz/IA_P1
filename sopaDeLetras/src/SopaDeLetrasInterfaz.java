@@ -164,8 +164,8 @@ public class SopaDeLetrasInterfaz extends JFrame {
                     if (c == palabra.length()) {
                         colorear(dir, matrix, i, j, palabra);
                         long endTime = System.nanoTime();
-                        long tiempo = (endTime - startTime) / 1000000; // microsegundos
-                        campoDeTiempo.setText(String.valueOf(tiempo));
+                        double tiempo = (endTime - startTime) / 1_000_000.0; // Milisegundos con decimales
+                        campoDeTiempo.setText(String.format("%.3f", tiempo)); // Formato con 3 decimales
                         return true;
                     }
                 }
@@ -174,8 +174,9 @@ public class SopaDeLetrasInterfaz extends JFrame {
         
         // Si no se encontró la palabra
         long endTime = System.nanoTime();
-        long tiempo = (endTime - startTime) / 1000000;
-        campoDeTiempo.setText(String.valueOf(tiempo));
+        double tiempoMs = (endTime - startTime) / 1_000_000.0; // Convertir a milisegundos con decimales
+    
+        campoDeTiempo.setText(String.format("%.3f ms", tiempoMs)); // Formato con 3 decimales
         return false;
     }
 
@@ -337,16 +338,31 @@ public class SopaDeLetrasInterfaz extends JFrame {
          * 
          * 
          */
+        double tiempoTotal = 0.0; // Usamos double para acumular decimales
         File fichero = new File("src/sopa_letra.txt");
         String[] palabras = cargarPalabras(fichero);
 
         char[][] matrizChar = extraerMatrizCaracteres(matriz);
+        long startTime = System.nanoTime();
         for (int i = 0; i < palabras.length; i++) {
         boolean encontrada = buscarMatriz(matrizChar, palabras[i], matriz, camposTiempos.get(i));
             System.out.println(palabras[i] + ": " + (encontrada ? "ENCONTRADA" : "NO ENCONTRADA"));
             JOptionPane.showMessageDialog(this, "Se encontro palabra");
         }
         
+        // Sumar todos los tiempos de los campos
+
+        for (JTextField campo : camposTiempos) {
+            try {
+                String texto = campo.getText().replace(",", "."); // Asegura formato decimal
+                tiempoTotal += Double.parseDouble(texto);
+            } catch (NumberFormatException e) {
+                // Si el campo está vacío o no es un número, se ignora (tiempo = 0)
+            }
+        }
+    
+    // Mostrar el total con 3 decimales
+    txtTiempoTotal.setText(String.format("%.3f ms", tiempoTotal));
     }
 
     private void generarNuevaSopa() {
