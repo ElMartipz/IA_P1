@@ -179,7 +179,7 @@ public class main {
         // Configurar la ventana principal
         int filas = 20;
         int columnas = 20;
-        File fichero = new File("/home/rodrigo/Documentos/java_practica/sopa_letra.txt");
+        File fichero = new File("src/sopa_letra.txt");
 
         // Cargar palabras desde archivo
         String[] palabras = cargarPalabras(fichero);
